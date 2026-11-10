@@ -1,0 +1,37 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "lb": {
+      "all": {
+        ".read": true,
+        ".indexOn": [
+          "s"
+        ],
+        "$pid": {
+          ".write": true,
+          ".validate": "newData.hasChildren(['n','s']) && newData.child('n').isString() && newData.child('n').val().length <= 12 && newData.child('s').isNumber()"
+        }
+      },
+      "daily": {
+        "$d": {
+          ".read": true,
+          ".indexOn": [
+            "s"
+          ],
+          "$pid": {
+            ".write": true,
+            ".validate": "newData.hasChildren(['n','s']) && newData.child('n').isString() && newData.child('n').val().length <= 12 && newData.child('s').isNumber()"
+          }
+        }
+      }
+    },
+    "duel": {
+      "$c": {
+        ".read": true,
+        ".write": true,
+        ".validate": "$c.length == 4"
+      }
+    }
+  }
+}
